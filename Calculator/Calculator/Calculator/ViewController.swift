@@ -44,11 +44,13 @@ class ViewController: UIViewController {
             enter()
         }
         
+        //Calling performOperation function to remove top two values from stack and perform the correct operation
+        //The function call is simplified since performOperation accepts a function as input
         switch operation {
-            case "+": performOperation(add)
-            case "−": performOperation(subtract)
-            case "×": performOperation(multiply)
-            case "÷": performOperation(divide)
+            case "+": performOperation {$0 + $1}
+            case "−": performOperation {$1 - $0}
+            case "×": performOperation {$0 * $1}
+            case "÷": performOperation {$1 / $0}
             default: break
         }
         
@@ -61,22 +63,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func multiply(d1: Double, d2: Double) -> Double{
-        return d1 * d2
-    }
     
-    func divide(d1: Double, d2: Double) -> Double{
-        return d1 / d2
-    }
-    
-    func add(d1: Double, d2: Double) -> Double{
-        return d1 + d2
-    }
-    
-    func subtract(d1: Double, d2: Double) -> Double{
-        return d1 - d2
-    }
-    
+
     //Function that appends digits clicked on by user to the 'display' property
     //Generic, recieved an input from the UIButton pressed to get the value
     @IBAction func appendDigit(sender: UIButton) {
